@@ -63,6 +63,7 @@ Implement a responsive layout with a Dark Sidebar navigation and a Light Workspa
 
 ### 1. Interface Principal do Chat (Design Universal)
 <img width="1918" height="870" alt="image" src="https://github.com/user-attachments/assets/b3d4e412-b055-46ff-aa74-774985c51415" />
+
 ### 2. Abas de Resumo e Controle de Devedores
 <img width="947" height="733" alt="image" src="https://github.com/user-attachments/assets/9e5c9e1b-be6b-4ead-9465-0198d3ea29ab" />
 <img width="792" height="562" alt="image" src="https://github.com/user-attachments/assets/41dab6a5-15ba-4194-b4f9-87f61dda2d5d" />
