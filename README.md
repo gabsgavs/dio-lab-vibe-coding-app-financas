@@ -1,89 +1,86 @@
-# 💸 App de Organização de Finanças Pessoais com Vibe Coding
+# FinBot 🤖 - Aplicativo de Finanças Pessoais Conversacional
 
-Aprenda a **criar soluções com IA** de forma criativa, guiando ferramentas como o **Copilot** e o **Lovable** com uma comunicação simples e natural. O foco é desenvolver o conceito de um **App de Organização de Finanças Pessoais**, mas, acima de tudo, aprender o **jeito Vibe de programar com IA**.
+Bem-vindo ao repositório do **FinBot**, um aplicativo de controle financeiro operado inteiramente por meio de uma interface conversacional (chat). Este projeto foi desenvolvido utilizando a abordagem de **Vibe Coding** através da plataforma **Lovable** para um curso de Inteligência Artificial, priorizando rigorosamente os princípios de **Design Universal**, **Acessibilidade** e segurança.
 
-## ✨ O que é Vibe Coding
+---
 
-**Vibe Coding** é uma forma leve e criativa de desenvolver com IA, baseada em **conversas naturais e bem estruturadas**. Você não precisa escrever código linha por linha. Em vez disso, aprende a **guiar a IA** descrevendo suas ideias de forma clara, com **intenção e contexto**. Em outras palavras:
+## 📝 Resumo do Aplicativo
 
-> Você mostra a vibe da sua ideia e a IA transforma em solução (ou em um caminho para ela).
+O **FinBot** foi criado para mitigar a fricção e o abandono histórico associados aos aplicativos tradicionais de controle financeiro (tabelas e planilhas complexas). Ele substitui formulários exaustivos por uma experiência de conversação simples, natural e inclusiva.
 
-## 🎯 Desafio
+### Principais Funcionalidades:
+* 💬 **Interface Chat-First:** Toda a interação acontece em uma linha do tempo de mensagens amigável e de alto contraste (padrão WCAG AA), reduzindo barreiras cognitivas de uso.
+* 🧠 **Processamento de Linguagem Natural Local:** O aplicativo interpreta comandos informais em português, como `"Gastei R$ 35 no almoço hoje"` ou `"Recebi meu salário de R$ 3000"`, extraindo valores e categorizando-os automaticamente.
+* 👥 **Mecanismo Inteligente de "Rachar Conta":** Ao digitar comandos como `"Paguei R$ 60 no Uber para dividir com a Mariana"`, o app reconhece o nome do devedor (tratando artigos em português), calcula sua metade (R$ 30) e gera uma pendência automática.
+* ✅ **Painel "Quem me Deve" com Baixa Rápida:** Uma aba lateral dedicada lista quem te deve e permite liquidar o valor instantaneamente com o botão `[Marcar como Pago]`, que já atualiza o saldo e gera uma receita de compensação.
+* 💳 **Rastreador de Fatura Nubank:** Funcionalidade inovadora para conciliação bancária. O app agrupa os gastos feitos no "crédito" ou "Nubank", organiza-os dentro do ciclo estimado de fechamento da fatura (fecha dia 2, vence dia 10) e exibe o nome amigável do gasto (ex: "Almoço") para o usuário não se perder com as razões sociais confusas do extrato bancário.
 
-Problema: Muitas pessoas não conseguem manter um controle financeiro porque os aplicativos exigem muita entrada de dados manual, e a criação de orçamentos é vista como algo tedioso. 
+---
 
-Precisamos de uma solução que permita **controlar as finanças por meio de uma conversa simples**, com **agentes de IA** capazes de criar **planos de economia personalizados e automatizados**. Você deve utilizar as ideias de **Vibe Coding** e **MVP (Produto Mínimo Viável)** para desenvolver o **conceito de um aplicativo** que resolva o problema citado.
+## 📄 Prompt Final (PRD Técnico)
 
-> [!IMPORTANT]
-> Você **não precisa construir o código**! O foco está em **usar a IA como sua parceira criativa**, transformando boas ideias e prompts em conceitos funcionais que simulam um produto real.
+Para consolidar o projeto de forma eficiente dentro das limitações de crédito do plano gratuito, o escopo foi injetado de forma incremental e finalizado com a especificação técnica abaixo:
 
-## 🪄 Etapas do Desafio
+```markdown
+# ROLE & CONTEXT
+You are an expert Full-Stack Engineer and UI/UX Designer. Your task is to complete the FinBot MVP, a secure, accessible, and beautiful Conversational Personal Finance Web Application based on Universal Design principles.
 
-### 1. Saber o que Pedir é a Chave! Otimize seus Prompts!
+# UI/UX THEME & UNIVERSAL DESIGN CRITERIA
+- **Design System:** Clean, modern, high-contrast (WCAG 2.1 AA compliance). Accessible sans-serif font family (Inter/system-ui), minimum body text 16px.
+- **Touch Targets:** All interactive elements, buttons, and inputs must have a minimum interactive area of 44x44px.
+- **Cognitive Accessibility:** Clean layout spacing, removing complex accounting jargon. Use meaningful icons accompanied by clear text labels.
 
-Antes de pedir para a IA "criar um app", é importante definir com clareza o que você quer construir e por quê. Para isso, você vai criar um **PRD (Product Requirements Document)** simplificado, uma especificação que serve como _briefing_ para a IA entender sua ideia.
+# APPLICATION STRUCTURE & TABS
+Implement a responsive layout with a Dark Sidebar navigation and a Light Workspace split into three active views controlled by state routing ('chat', 'resumo', 'devedores'):
 
-Um bom PRD deve descrever o problema, quem será beneficiado, as principais funcionalidades e o que você espera que a IA entregue. Use o modelo abaixo como ponto de partida e adapte conforme o seu estilo:
+1. **Chat Workspace ('chat'):**
+   - Centered instant-messaging feed displaying interaction bubbles (User aligned right in primary green; Bot aligned left).
+   - Parser Engine: Extract values and events from natural language text locally (Expenses, Incomes, Splits).
+   - *Regex Debtor Rule:* Ignore optional Portuguese articles ("a", "o", "da", "do") after "com" to capture the dynamic name correctly (e.g., "com a Mariana" -> Debtor: Mariana).
 
-```txt
-# Contexto
-Quero criar um aplicativo de Organização de Finanças Pessoais que funcione por meio de conversas com o usuário.  
-A ideia é facilitar o controle financeiro de forma simples e natural, sem formulários manuais ou planilhas complexas.
+2. **Dashboard View ('resumo'):**
+   - Grid cards displaying Total Income, Total Expenses, and Net Balance.
+   - Horizontal progress bars acting as a distribution chart for spend categories.
+   - **Nubank Credit Card Invoice Tracker:** Section displaying transactions where paymentMethod === 'Cartão Nubank', organizing entries into a simulated billing cycle (closes on Day 2, due on Day 10) matching friendly names recorded via chat.
 
-# Problema
-Muitas pessoas desistem de controlar seus gastos porque os apps atuais exigem muita entrada manual e pouca personalização.  
-Quero resolver isso com uma experiência de conversa e recomendações automáticas de economia.
+3. **Reconciliation View ('devedores'):**
+   - Map through pending debts displaying Debtor's Name, Amount, and Date.
+   - Provide a large target action button: `[Marcar como Pago]` which marks the debt as paid, creates an equivalent income entry, and updates state.
 
-# Público-Alvo
-Pessoas que querem começar a organizar suas finanças de forma prática e sem complicação, principalmente iniciantes.
-
-# Funcionalidades-Chave
-1. Registrar gastos via chat em linguagem natural.  
-2. Classificar automaticamente as transações.  
-3. Definir e acompanhar metas financeiras.  
-4. Receber dicas de economia do “Agente Financeiro”.  
-5. Visualizar relatórios simples e personalizados.
-
-# Entregável da IA
-Gerar um plano de MVP com as principais telas, recursos necessários e um esboço de validação inicial.  
-Usar tom educativo e linguagem acessível, em português.
 ```
+## [Resultado Final](https://finbot-chat-shell.lovable.app/)
 
-Depois de preencher o modelo, use o Copilot Web para revisar e melhorar o seu prompt antes de ir ao Lovable. A ideia é lapidar o texto até que ele fique claro, direto e reflita exatamente a sua intenção.
+## 💬 Interações com o Lovable
+>Iteração 1: Criação da interface visual base (chat shell) responsiva e de alto contraste utilizando os princípios de Design Universal e acessibilidade.
 
-> [!TIP]
-> Pense no PRD/Prompt como “o briefing que a IA precisa para entender sua vibe”. Portanto, quanto mais claro e intencional for o texto, mais próximas do ideal serão as respostas da IA.
+> Iteração 2: Implementação do motor lógico de processamento de texto (parser) para reconhecer e calcular automaticamente gastos comuns e divisões de contas.
 
-### 2. Explorando o Lovable na Prática
+> Iteração 3: Ativação das abas laterais para exibição de gráficos de despesas, do rastreador de fatura Nubank e da lista interativa de devedores.
 
-Com seu PRD pronto e revisado, é hora de colocar a IA em ação. Abra o Lovable, cole seu prompt completo e peça o plano inicial do MVP do seu aplicativo. Como o plano gratuito limita você a 5 interações por dia, seja estratégico:
-- Faça perguntas diretas e construtivas, como “crie o fluxo de telas com base nas funcionalidades listadas” ou “gere uma versão resumida do plano de MVP”;
-- Priorize clareza nas instruções para aproveitar ao máximo cada resposta;
+> Iteração 4: Correção cirúrgica na expressão regular (Regex) para extrair corretamente os nomes próprios em português nas mensagens de divisão de gastos.
 
-Durante essa etapa, você pode orientar a IA para três entregas principais:
-1. Agente Financeiro: defina o comportamento e o tom de voz de um consultor financeiro pessoal, alinhado ao público e objetivo do app.
-2. Fluxo de Telas: peça à IA para gerar o fluxo conceitual de telas com base nas funcionalidades descritas no PRD, simulando a interação por conversa.
-3. Plano de MVP: solicite um resumo das 5 funcionalidades principais, dos recursos necessários e um plano de validação inicial (como medir se o app cumpre seu propósito).
+## 📸 Demonstração das Interações (Prints / Vídeos)
 
-> [!TIP]
-> Se preferir, você pode fazer tudo com o **Copilot**. O importante é exercitar a habilidade de transformar intenções em instruções claras e testar os limites da IA como parceira criativa.
+### 1. Interface Principal do Chat (Design Universal)
+<img width="1918" height="870" alt="image" src="https://github.com/user-attachments/assets/b3d4e412-b055-46ff-aa74-774985c51415" />
+### 2. Abas de Resumo e Controle de Devedores
+<img width="947" height="733" alt="image" src="https://github.com/user-attachments/assets/9e5c9e1b-be6b-4ead-9465-0198d3ea29ab" />
+<img width="792" height="562" alt="image" src="https://github.com/user-attachments/assets/41dab6a5-15ba-4194-b4f9-87f61dda2d5d" />
 
-### 3. Entregando o Desafio na DIO
+---
 
-Finalize seu projeto criando um **repositório no GitHub** (pode ser um **fork** deste).  
-No README do seu repositório, inclua:
+## 🧠 Reflexão Sobre o Processo (Human-AI Collaboration)
 
-- Seu **prompt final** (PRD);  
-- Prints ou pequenos vídeos das interações com a IA;  
-- Um resumo do que o seu **App de Finanças Pessoais** faz;  
-- Uma breve **reflexão sobre o processo**:
-  - O que funcionou bem?  
-  - O que não funcionou como o esperado?  
-  - O que aprendeu sobre conversar com IAs?
+Desenvolver este ecossistema completo utilizando o conceito de *Vibe Coding* sob a restrição severa de poucas iterações diárias gratuitas trouxe aprendizados profundos de Engenharia de Software.
 
-> [!TIP]
-> Publique seu repositório e compartilhe o link na plataforma da DIO! Sua entrega é a prova de que você domina o raciocínio de Vibe Coding, mesmo sem escrever uma única linha de código.
+### O que funcionou bem?
+* **Desenvolvimento Modular Sprints:** Dividir o desenvolvimento em "Casca Visual" -> "Lógica do Chat" -> "Dashboards" -> "Autenticação" foi crucial. Evitou que a IA misturasse contextos, reduzindo a taxa de erros de compilação a zero nas primeiras fases.
+* **Velocidade do UI Engine:** O Lovable interpretou os comandos de Design Universal de forma surpreendente, gerando layouts responsivos e elegantes usando Tailwind CSS sem necessidade de ajustes manuais.
 
-## 💬 Conclusão
+### O que não funcionou como o esperado?
+* **O Bug de Artigo Oculto (Regex):** A IA teve dificuldades iniciais em extrair o nome correto do devedor quando frases naturais continham artigos (ex: `"dividir com a Mariana"` salvava o nome do devedor como `"A"`). Isso exigiu uma intervenção técnica humana direta, onde o prompt teve que fornecer o bloco lógico exato de JavaScript/Regex para corrigir a falha.
 
-Vibe Coding é sobre clareza, curiosidade e criatividade, não sobre perfeição técnica. O verdadeiro objetivo aqui é aprender a pensar junto com a IA, transformando ideias em conceitos reais e enxergando a tecnologia como uma extensão do seu raciocínio criativo. Cada interação é um experimento, quanto mais clara for sua intenção, mais surpreendente será o resultado.
+### O que aprendi sobre conversar com IAs?
+1. **Contexto Técnico em Inglês:** Expressar regras de negócio e arquiteturas em inglês gera resultados infinitamente mais limpos, pois a maior parte do código-fonte e documentações que treinaram os modelos está nessa língua. O português deve ser isolado estritamente para os textos de interface (UI).
+2. **Especificidade supera Intencionalidade:** Dizer apenas `"faça o app salvar os dados"` abre espaço para alucinações. Dar instruções detalhadas de arrays de estado, persistência em `localStorage` e lógica condicional garante um código limpo e assertivo de primeira.
+3. **Gestão de Escopo Restrito:** Desenvolver com limites estritos de iteração nos força a agir como engenheiros melhores, priorizando o valor central da regra de negócio (Core Value) antes de gastar energia com perfumarias visuais.
